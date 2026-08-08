@@ -94,9 +94,12 @@ Report Generated
 
                 <div class="d-grid gap-3 d-md-flex justify-content-md-center mt-4">
 
-                    <a href="{{ url_for('report.download', filename=filename) }}"
-                       class="btn btn-success">
-
+                    <a
+                       href="{{ url_for('report.download', report_type=report_type) }}"
+                         class="btn btn-success"
+>
+    Download Report
+</a>
                         <i class="bi bi-download"></i>
 
                         Download Report

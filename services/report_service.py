@@ -1,110 +1,51 @@
-import os
-import pandas as pd
-from datetime import datetime
-
 from database.db import get_db, close_db
-from config import Config
 
 
-# ==========================================
-# Generate CSV Report
-# ==========================================
+REPORT_TABLES = {
+    "beneficiaries": "beneficiaries",
+    "nutrition": "nutrition",
+    "attendance": "attendance",
+    "health": "health_checkups"
+}
+
+
 def generate_report(report_type):
-    """
-    Generate CSV report
-    """
 
-    tables = {
+    table_name = REPORT_TABLES.get(
+        report_type
+    )
 
-        "beneficiaries": "beneficiaries",
-
-        "nutrition": "nutrition",
-
-        "attendance": "attendance",
-
-        "health": "health_checkups"
-
-    }
-
-    if report_type not in tables:
-
-        return False, "Invalid Report Type"
+    if not table_name:
+        return False, "Invalid report type."
 
     conn = get_db()
 
     if not conn:
-
-        return False, "Database Connection Failed"
+        return False, "Database connection failed."
 
     try:
-
-        query = f"SELECT * FROM {tables[report_type]}"
-
-        df = pd.read_sql(query, conn)
-
-        os.makedirs(
-            Config.REPORT_FOLDER,
-            exist_ok=True
+        cursor = conn.cursor(
+            dictionary=True
         )
 
-        filename = (
-
-            f"{report_type}_"
-
-            f"{datetime.now().strftime('%Y%m%d_%H%M%S')}.csv"
-
+        cursor.execute(
+            f"SELECT * FROM {table_name}"
         )
 
-        filepath = os.path.join(
-
-            Config.REPORT_FOLDER,
-
-            filename
-
-        )
-
-        df.to_csv(
-
-            filepath,
-
-            index=False
-
-        )
+        rows = cursor.fetchall()
 
         return True, {
-
-            "filename": filename,
-
-            "filepath": filepath,
-
-            "rows": len(df)
-
+            "rows": rows,
+            "count": len(rows)
         }
 
     except Exception as e:
 
+        print(
+            f"[Report Error] {e}"
+        )
+
         return False, str(e)
 
     finally:
-
         close_db(conn)
-
-
-# ==========================================
-# Read Report
-# ==========================================
-def read_report(filename):
-
-    filepath = os.path.join(
-
-        Config.REPORT_FOLDER,
-
-        filename
-
-    )
-
-    if not os.path.exists(filepath):
-
-        return None
-
-    return pd.read_csv(filepath)

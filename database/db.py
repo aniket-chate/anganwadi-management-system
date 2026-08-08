@@ -1,45 +1,47 @@
+import os
 import mysql.connector
 from mysql.connector import Error
+
 from config import Config
-import os
 
 
 def get_db():
     """
-    Create and return a MySQL database connection.
+    Create and return a MySQL connection.
 
-    Local development:
-        Uses the local MySQL configuration.
-
-    Production/Vercel:
-        Uses the Aiven MySQL configuration with SSL/TLS.
+    Works with:
+    - Local MySQL during development
+    - Aiven MySQL on Vercel
     """
 
     try:
-        # Determine whether SSL is required.
-        # Set DB_SSL_REQUIRED=true in Vercel for Aiven.
-        ssl_required = os.getenv(
-            "DB_SSL_REQUIRED", "false"
-        ).lower() == "true"
+        host = Config.DB_HOST
+
+        # Automatically enable SSL for Aiven.
+        # This means you don't have to manually change the
+        # local configuration when switching environments.
+        is_aiven = host and "aivencloud.com" in host.lower()
 
         connection_config = {
-            "host": Config.DB_HOST,
-            "port": int(os.getenv("DB_PORT", "3306")),
+            "host": host,
+            "port": int(Config.DB_PORT),
             "user": Config.DB_USER,
             "password": Config.DB_PASSWORD,
             "database": Config.DB_NAME,
             "autocommit": False,
+            "connection_timeout": 10,
         }
 
-        # Aiven requires an encrypted MySQL connection.
-        if ssl_required:
+        if is_aiven:
             connection_config.update({
                 "ssl_disabled": False,
                 "ssl_verify_cert": False,
                 "ssl_verify_identity": False,
             })
 
-        connection = mysql.connector.connect(**connection_config)
+        connection = mysql.connector.connect(
+            **connection_config
+        )
 
         if connection.is_connected():
             return connection
@@ -55,12 +57,12 @@ def get_db():
 
 def close_db(connection):
     """
-    Safely close the database connection.
+    Safely close a database connection.
     """
 
     if connection:
         try:
             if connection.is_connected():
                 connection.close()
-        except Error:
+        except Exception:
             pass
