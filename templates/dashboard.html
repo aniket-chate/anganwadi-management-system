@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Dashboard</title>
+</head>
+<body>
+
+<h2>All Beneficiaries</h2>
+
+<table border="1">
+    <tr>
+        <th>ID</th>
+        <th>Name</th>
+        <th>Age</th>
+        <th>Category</th>
+        <th>Health Status</th>
+        <th>Actions</th>
+    </tr>
+
+    {% for b in data %}
+    <tr>
+        <td>{{ b.id }}</td>
+        <td>{{ b.beneficiary_name }}</td>
+        <td>{{ b.age }}</td>
+        <td>{{ b.category }}</td>
+        <td>{{ b.health_status }}</td>
+        <td>
+           <a href="{{ url_for('beneficiary.update_form', id=b.id) }}">Edit</a>
+           <a href="{{ url_for('beneficiary.delete', id=b.id) }}">Delete</a>
+        </td>
+    </tr>
+    {% endfor %}
+</table>
+
+<br>
+<a href="{{ url_for('beneficiary.add') }}">Add</a>
+
+</body>
+</html>

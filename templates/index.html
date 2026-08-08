@@ -1,0 +1,400 @@
+{% extends "layout.html" %}
+
+{% block title %}
+Home | Anganwadi Management System
+{% endblock %}
+
+{% block content %}
+
+<div class="row mb-4">
+
+    <div class="col-lg-12">
+
+        <div class="card shadow border-0">
+
+            <div class="card-body">
+
+                <h2 class="fw-bold text-success">
+
+                    <i class="bi bi-house-heart-fill"></i>
+
+                    Anganwadi Management System
+
+                </h2>
+
+                <p class="text-muted mb-0">
+
+                    Digitally manage beneficiaries, attendance,
+                    nutrition records and reports.
+
+                </p>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+<!-- ================= Statistics ================= -->
+
+
+
+    
+</div>
+<div class="row mb-4">
+
+    <!-- Total Beneficiaries -->
+
+    <div class="col-md-6">
+
+        <div class="card shadow text-center border-0">
+
+            <div class="card-body">
+
+                <i class="bi bi-people-fill display-5 text-success"></i>
+
+                <h3 class="mt-3">
+
+                    {{ total_beneficiaries }}
+
+                </h3>
+
+                <p class="fw-semibold mb-1">
+
+                    Total Beneficiaries
+
+                </p>
+
+                <small class="text-muted">
+
+                    Registered in the system
+
+                </small>
+
+            </div>
+
+        </div>
+
+    </div>
+
+    <!-- Reports -->
+
+    <div class="col-md-6">
+
+        <div class="card shadow text-center border-0">
+
+            <div class="card-body">
+
+                <i class="bi bi-file-earmark-bar-graph-fill display-5 text-warning"></i>
+
+                <h3 class="mt-3">
+
+                    {{ total_reports }}
+
+                </h3>
+
+                <p class="fw-semibold mb-1">
+
+                    Available Reports
+
+                </p>
+
+                <small class="text-muted">
+
+                    Generate & Download
+
+                </small>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+<!-- ================= Main Section ================= -->
+
+<div class="row">
+
+    <!-- Left Side -->
+
+    <div class="col-lg-6">
+
+        <div class="card shadow mb-4">
+
+            <div class="card-header bg-success text-white">
+
+                <h5 class="mb-0">
+
+                    <i class="bi bi-person-plus-fill"></i>
+
+                    Add Beneficiary
+
+                </h5>
+
+            </div>
+
+            <div class="card-body">
+
+                <form action="{{ url_for('beneficiary.add') }}"
+                      method="POST">
+
+                    <div class="mb-3">
+
+                        <label class="form-label">
+
+                            Full Name
+
+                        </label>
+
+                        <input
+                            type="text"
+                            class="form-control"
+                            name="name"
+                            required>
+
+                    </div>
+
+                    <div class="mb-3">
+
+                        <label class="form-label">
+
+                            Age
+
+                        </label>
+
+                        <input
+                            type="number"
+                            class="form-control"
+                            name="age"
+                            required>
+
+                    </div>
+
+                    <div class="mb-3">
+
+                        <label class="form-label">
+
+                            Category
+
+                        </label>
+
+                        <select
+                            class="form-select"
+                            name="category"
+                            required>
+
+                            <option value="">Select</option>
+
+                            <option>Child</option>
+
+                            <option>Pregnant Woman</option>
+
+                            <option>Lactating Mother</option>
+
+                        </select>
+
+                    </div>
+
+                    <div class="mb-3">
+
+                        <label class="form-label">
+
+                            Health Status
+
+                        </label>
+
+                        <input
+                            type="text"
+                            class="form-control"
+                            name="health_status"
+                            required>
+
+                    </div>
+
+                    <button
+                        class="btn btn-success w-100">
+
+                        <i class="bi bi-check-circle-fill"></i>
+
+                        Add Beneficiary
+
+                    </button>
+
+                </form>
+
+            </div>
+
+        </div>
+
+    </div>
+
+    <!-- Right Side -->
+
+    <div class="col-lg-6">
+
+        <!-- Search -->
+
+        <div class="card shadow mb-4">
+
+            <div class="card-header bg-primary text-white">
+
+                <h5>
+
+                    <i class="bi bi-search"></i>
+
+                    Search Beneficiary
+
+                </h5>
+
+            </div>
+
+            <div class="card-body">
+
+                <form action="{{ url_for('beneficiary.search') }}"
+                      method="GET">
+
+                    <div class="mb-3">
+
+                        <input
+                            class="form-control"
+                            type="text"
+                            placeholder="Beneficiary Name"
+                            name="name">
+
+                    </div>
+
+                    <div class="mb-3">
+
+                        <select
+                            class="form-select"
+                            name="category">
+
+                            <option value="All">
+
+                                All Categories
+
+                            </option>
+
+                            <option>Child</option>
+
+                            <option>Pregnant Woman</option>
+
+                            <option>Lactating Mother</option>
+
+                        </select>
+
+                    </div>
+
+                    <div class="mb-3">
+
+                        <input
+                            class="form-control"
+                            type="text"
+                            name="health_status"
+                            placeholder="Health Status">
+
+                    </div>
+
+                    <div class="mb-3">
+
+                        <select
+                            class="form-select"
+                            name="sort">
+
+                            <option value="name">
+
+                                Name
+
+                            </option>
+
+                            <option value="age">
+
+                                Age
+
+                            </option>
+
+                            <option value="category">
+
+                                Category
+
+                            </option>
+
+                        </select>
+
+                    </div>
+
+                    <button
+                        class="btn btn-primary w-100">
+
+                        Search
+
+                    </button>
+
+                </form>
+
+            </div>
+
+        </div>
+
+        <!-- Reports -->
+
+        <div class="card shadow">
+
+            <div class="card-header bg-warning">
+
+                <h5 class="mb-0">
+
+                    <i class="bi bi-file-earmark-bar-graph-fill"></i>
+
+                    Reports
+
+                </h5>
+
+            </div>
+
+            <div class="card-body d-grid gap-2">
+
+                <a
+                    href="{{ url_for('report.report', report_type='beneficiaries') }}"
+                    class="btn btn-outline-success">
+
+                    Beneficiaries Report
+
+                </a>
+
+                <a
+                    href="{{ url_for('report.report', report_type='nutrition') }}"
+                    class="btn btn-outline-success">
+
+                    Nutrition Report
+
+                </a>
+
+                <a
+                    href="{{ url_for('report.report', report_type='attendance') }}"
+                    class="btn btn-outline-success">
+
+                    Attendance Report
+
+                </a>
+
+                <a
+                    href="{{ url_for('report.report', report_type='health') }}"
+                    class="btn btn-outline-success">
+
+                    Health Report
+
+                </a>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+{% endblock %}

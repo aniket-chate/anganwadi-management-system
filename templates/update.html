@@ -1,0 +1,148 @@
+{% extends "layout.html" %}
+
+{% block title %}
+Update Beneficiary
+{% endblock %}
+
+{% block content %}
+
+<div class="row justify-content-center">
+
+    <div class="col-lg-7">
+
+        <div class="card shadow">
+
+            <div class="card-header bg-warning">
+
+                <h3 class="mb-0">
+
+                    <i class="bi bi-pencil-square"></i>
+
+                    Update Beneficiary
+
+                </h3>
+
+            </div>
+
+            <div class="card-body">
+
+                <form
+                    action="{{ url_for('beneficiary.update', id=beneficiary.id) }}"
+                    method="POST">
+
+                    <div class="mb-3">
+
+                        <label class="form-label">
+
+                            Beneficiary ID
+
+                        </label>
+
+                        <input
+                            type="text"
+                            class="form-control"
+                            value="{{ beneficiary.id }}"
+                            readonly>
+
+                    </div>
+
+                    <div class="mb-3">
+
+                        <label class="form-label">
+
+                            Beneficiary Name
+
+                        </label>
+
+                        <input
+                            type="text"
+                            class="form-control"
+                            value="{{ beneficiary.beneficiary_name }}"
+                            readonly>
+
+                    </div>
+
+                    <div class="mb-3">
+
+                        <label class="form-label">
+
+                            Age
+
+                        </label>
+
+                        <input
+                            type="text"
+                            class="form-control"
+                            value="{{ beneficiary.age }}"
+                            readonly>
+
+                    </div>
+
+                    <div class="mb-3">
+
+                        <label class="form-label">
+
+                            Category
+
+                        </label>
+
+                        <input
+                            type="text"
+                            class="form-control"
+                            value="{{ beneficiary.category }}"
+                            readonly>
+
+                    </div>
+
+                    <div class="mb-3">
+
+                        <label class="form-label">
+
+                            Health Status
+
+                        </label>
+
+                        <input
+                            type="text"
+                            class="form-control"
+                            name="health_status"
+                            value="{{ beneficiary.health_status }}"
+                            required>
+
+                    </div>
+
+                    <div class="d-flex justify-content-between">
+
+                        <a
+                            href="{{ url_for('beneficiary.beneficiaries') }}"
+                            class="btn btn-secondary">
+
+                            <i class="bi bi-arrow-left"></i>
+
+                            Back
+
+                        </a>
+
+                        <button
+                            type="submit"
+                            class="btn btn-warning">
+
+                            <i class="bi bi-check-circle"></i>
+
+                            Update Beneficiary
+
+                        </button>
+
+                    </div>
+
+                </form>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+{% endblock %}

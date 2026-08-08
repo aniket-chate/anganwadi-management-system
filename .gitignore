@@ -1,0 +1,44 @@
+﻿# Python
+__pycache__/
+*.py[cod]
+*.pyo
+
+# Virtual environments
+venv/
+.venv/
+env/
+
+# Environment variables
+.env
+
+# IDE
+.vscode/
+.idea/
+
+# Flask
+instance/
+
+# Generated reports and CSV files
+*.csv
+reports/
+
+# Build files
+build/
+dist/
+*.spec
+
+# Archives
+*.zip
+*.rar
+*.7z
+
+# Logs
+*.log
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Jupyter
+.ipynb_checkpoints/
+

@@ -1,0 +1,205 @@
+{% extends "layout.html" %}
+
+{% block title %}
+Beneficiaries
+{% endblock %}
+
+{% block content %}
+
+<div class="row">
+
+    <div class="col-lg-12">
+
+        <div class="card shadow">
+
+            <div class="card-header bg-success text-white d-flex justify-content-between align-items-center">
+
+                <h4 class="mb-0">
+
+                    <i class="bi bi-people-fill"></i>
+
+                    Beneficiaries
+
+                </h4>
+
+                <a href="{{ url_for('home.home') }}"
+                   class="btn btn-light">
+
+                    <i class="bi bi-plus-circle"></i>
+
+                    Add New
+
+                </a>
+
+            </div>
+
+            <div class="card-body">
+
+                {% if beneficiaries %}
+
+                <div class="table-responsive">
+
+                    <table class="table table-bordered table-hover align-middle">
+
+                        <thead class="table-success">
+
+                            <tr>
+
+                                <th>ID</th>
+
+                                <th>Name</th>
+
+                                <th>Age</th>
+
+                                <th>Category</th>
+
+                                <th>Health Status</th>
+
+                                <th width="180">
+
+                                    Actions
+
+                                </th>
+
+                            </tr>
+
+                        </thead>
+
+                        <tbody>
+
+                        {% for beneficiary in beneficiaries %}
+
+                            <tr>
+
+                                <td>
+
+                                    {{ beneficiary.id }}
+
+                                </td>
+
+                                <td>
+
+                                    {{ beneficiary.beneficiary_name }}
+
+                                </td>
+
+                                <td>
+
+                                    {{ beneficiary.age }}
+
+                                </td>
+
+                                <td>
+
+                                    {{ beneficiary.category }}
+
+                                </td>
+
+                                <td>
+
+                                    {% if beneficiary.health_status == "Healthy" %}
+
+                                    <span class="badge bg-success">
+
+                                        {{ beneficiary.health_status }}
+
+                                    </span>
+
+                                    {% elif beneficiary.health_status == "Underweight" %}
+
+                                    <span class="badge bg-warning text-dark">
+
+                                        {{ beneficiary.health_status }}
+
+                                    </span>
+
+                                    {% elif beneficiary.health_status == "Critical" %}
+
+                                    <span class="badge bg-danger">
+
+                                        {{ beneficiary.health_status }}
+
+                                    </span>
+
+                                    {% else %}
+
+                                    <span class="badge bg-secondary">
+
+                                        {{ beneficiary.health_status }}
+
+                                    </span>
+
+                                    {% endif %}
+
+                                </td>
+
+                                <td>
+
+                                    <a
+                                        href="{{ url_for('beneficiary.edit', id=beneficiary.id) }}"
+                                        class="btn btn-warning btn-sm">
+
+                                        <i class="bi bi-pencil-square"></i>
+
+                                    </a>
+
+                                    <a
+                                        href="{{ url_for('beneficiary.delete', id=beneficiary.id) }}"
+                                        class="btn btn-danger btn-sm"
+                                        onclick="return confirm('Delete this beneficiary?');">
+
+                                        <i class="bi bi-trash-fill"></i>
+
+                                    </a>
+
+                                </td>
+
+                            </tr>
+
+                        {% endfor %}
+
+                        </tbody>
+
+                    </table>
+
+                </div>
+
+                {% else %}
+
+                <div class="text-center py-5">
+
+                    <i class="bi bi-people display-1 text-secondary"></i>
+
+                    <h3 class="mt-3">
+
+                        No Beneficiaries Found
+
+                    </h3>
+
+                    <p class="text-muted">
+
+                        Add your first beneficiary to begin.
+
+                    </p>
+
+                    <a
+                        href="{{ url_for('home.home') }}"
+                        class="btn btn-success">
+
+                        Add Beneficiary
+
+                    </a>
+
+                </div>
+
+                {% endif %}
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+{% endblock %}

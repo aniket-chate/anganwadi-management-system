@@ -1,0 +1,1087 @@
+/* =====================================================
+   ANGANWADI MANAGEMENT SYSTEM
+   Professional Dashboard
+===================================================== */
+
+:root{
+
+    --primary:#198754;
+    --primary-dark:#146c43;
+
+    --secondary:#6c757d;
+
+    --warning:#ffc107;
+
+    --danger:#dc3545;
+
+    --info:#0dcaf0;
+
+    --light:#f8f9fa;
+
+    --dark:#212529;
+
+    --white:#ffffff;
+
+    --border:#dee2e6;
+
+    --shadow:
+
+        0 8px 25px rgba(0,0,0,.08);
+
+    --radius:15px;
+
+    --transition:.30s;
+
+}
+
+/* ====================================== */
+
+body{
+
+    background:#f5f7fa;
+
+    font-family:
+
+    "Segoe UI",
+
+    Tahoma,
+
+    Geneva,
+
+    Verdana,
+
+    sans-serif;
+
+    color:#333;
+
+}
+
+/* ====================================== */
+
+a{
+
+    text-decoration:none;
+
+}
+
+img{
+
+    max-width:100%;
+
+}
+
+/* ====================================== */
+
+.navbar{
+
+    box-shadow:
+
+    0 4px 20px rgba(0,0,0,.1);
+
+}
+
+.navbar-brand{
+
+    font-size:1.4rem;
+
+    font-weight:700;
+
+}
+
+.nav-link{
+
+    font-weight:500;
+
+}
+
+.nav-link:hover{
+
+    color:#fff;
+
+}
+
+/* ====================================== */
+
+.card{
+
+    border:none;
+
+    border-radius:var(--radius);
+
+    box-shadow:var(--shadow);
+
+    overflow:hidden;
+
+    transition:.3s;
+
+}
+
+.card:hover{
+
+    transform:translateY(-5px);
+
+}
+
+.card-header{
+
+    font-weight:600;
+
+    padding:18px;
+
+}
+
+.card-body{
+
+    padding:25px;
+
+}
+
+/* ====================================== */
+
+.btn{
+
+    border-radius:10px;
+
+    font-weight:600;
+
+    transition:.3s;
+
+}
+
+.btn:hover{
+
+    transform:translateY(-2px);
+
+}
+
+/* ====================================== */
+
+.btn-success{
+
+    background:var(--primary);
+
+    border:none;
+
+}
+
+.btn-success:hover{
+
+    background:var(--primary-dark);
+
+}
+
+.btn-warning{
+
+    color:#000;
+
+}
+
+.btn-outline-success:hover{
+
+    color:#fff;
+
+}
+
+/* ====================================== */
+
+.display-5{
+
+    margin-bottom:10px;
+
+}
+
+/* ====================================== */
+
+.table{
+
+    margin-bottom:0;
+
+}
+
+.table th{
+
+    font-weight:700;
+
+}
+
+.table td{
+
+    vertical-align:middle;
+
+}
+
+/* ====================================== */
+
+.badge{
+
+    padding:8px 12px;
+
+    font-size:.8rem;
+
+    border-radius:20px;
+
+}
+
+/* ====================================== */
+
+footer{
+
+    margin-top:80px;
+
+}
+
+/* ====================================== */
+
+.form-control,
+
+.form-select{
+
+    border-radius:10px;
+
+    padding:12px;
+
+}
+
+.form-control:focus,
+
+.form-select:focus{
+
+    box-shadow:none;
+
+    border-color:var(--primary);
+
+}
+
+/* ====================================== */
+
+.alert{
+
+    border:none;
+
+    border-radius:12px;
+
+}
+
+/* =====================================================
+   DASHBOARD STATISTICS
+===================================================== */
+
+.stat-card{
+
+    background:#fff;
+
+    border-radius:15px;
+
+    padding:25px;
+
+    text-align:center;
+
+    box-shadow:var(--shadow);
+
+    transition:.35s;
+
+    cursor:pointer;
+
+}
+
+.stat-card:hover{
+
+    transform:translateY(-8px);
+
+}
+
+.stat-card i{
+
+    font-size:55px;
+
+    margin-bottom:15px;
+
+}
+
+.stat-card h2{
+
+    font-size:2rem;
+
+    font-weight:700;
+
+}
+
+.stat-card p{
+
+    color:#777;
+
+    margin-bottom:0;
+
+}
+
+/* ====================================== */
+
+.text-green{
+
+    color:var(--primary);
+
+}
+
+.text-red{
+
+    color:var(--danger);
+
+}
+
+.text-blue{
+
+    color:#0d6efd;
+
+}
+
+.text-yellow{
+
+    color:#ffc107;
+
+}
+
+/* ======================================
+   TABLE
+====================================== */
+
+.table-responsive{
+
+    border-radius:15px;
+
+    overflow:hidden;
+
+}
+
+.table thead{
+
+    background:var(--primary);
+
+    color:#fff;
+
+}
+
+.table-hover tbody tr{
+
+    transition:.3s;
+
+}
+
+.table-hover tbody tr:hover{
+
+    background:#ecfff3;
+
+}
+
+.table td{
+
+    padding:15px;
+
+}
+
+.table th{
+
+    padding:15px;
+
+}
+
+/* ======================================
+   ACTION BUTTONS
+====================================== */
+
+.action-btn{
+
+    width:38px;
+
+    height:38px;
+
+    border:none;
+
+    border-radius:10px;
+
+    display:inline-flex;
+
+    align-items:center;
+
+    justify-content:center;
+
+    transition:.3s;
+
+}
+
+.action-btn:hover{
+
+    transform:scale(1.1);
+
+}
+
+.edit-btn{
+
+    background:#ffc107;
+
+    color:#000;
+
+}
+
+.delete-btn{
+
+    background:#dc3545;
+
+    color:#fff;
+
+}
+
+.view-btn{
+
+    background:#198754;
+
+    color:#fff;
+
+}
+
+/* ======================================
+   SEARCH CARD
+====================================== */
+
+.search-card{
+
+    background:#fff;
+
+    padding:25px;
+
+    border-radius:15px;
+
+    box-shadow:var(--shadow);
+
+}
+
+.search-card h4{
+
+    margin-bottom:20px;
+
+}
+
+/* ======================================
+   REPORT BUTTONS
+====================================== */
+
+.report-btn{
+
+    width:100%;
+
+    margin-bottom:12px;
+
+    padding:14px;
+
+    font-weight:600;
+
+    border-radius:12px;
+
+}
+
+.report-btn:hover{
+
+    transform:translateX(5px);
+
+}
+
+/* ======================================
+   DASHBOARD CARDS
+====================================== */
+
+.dashboard-card{
+
+    background:#fff;
+
+    border-radius:15px;
+
+    padding:30px;
+
+    box-shadow:var(--shadow);
+
+    margin-bottom:25px;
+
+}
+
+.dashboard-card h3{
+
+    font-weight:700;
+
+    margin-bottom:20px;
+
+}
+
+/* ======================================
+   FORM
+====================================== */
+
+.form-label{
+
+    font-weight:600;
+
+}
+
+input,
+
+select{
+
+    transition:.3s;
+
+}
+
+input:hover,
+
+select:hover{
+
+    border-color:var(--primary);
+
+}
+
+/* ======================================
+   EMPTY TABLE
+====================================== */
+
+.empty-state{
+
+    text-align:center;
+
+    padding:60px 20px;
+
+}
+
+.empty-state i{
+
+    font-size:80px;
+
+    color:#bbb;
+
+}
+
+.empty-state h3{
+
+    margin-top:20px;
+
+}
+
+.empty-state p{
+
+    color:#777;
+
+}
+
+/* ======================================
+   BADGES
+====================================== */
+
+.badge-success{
+
+    background:#198754;
+
+}
+
+.badge-warning{
+
+    background:#ffc107;
+
+    color:#000;
+
+}
+
+.badge-danger{
+
+    background:#dc3545;
+
+}
+
+.badge-secondary{
+
+    background:#6c757d;
+
+}
+
+/* ======================================
+   UPDATE PAGE
+====================================== */
+
+.update-card{
+
+    max-width:700px;
+
+    margin:auto;
+
+}
+
+/* ======================================
+   REPORT PAGE
+====================================== */
+
+.report-success{
+
+    text-align:center;
+
+    padding:40px;
+
+}
+
+.report-success i{
+
+    font-size:90px;
+
+    color:#198754;
+
+}
+
+.report-success h2{
+
+    margin-top:20px;
+
+}
+
+/* ======================================
+   FLASH ALERTS
+====================================== */
+
+.alert{
+
+    animation:fadeDown .4s ease;
+
+}
+
+@keyframes fadeDown{
+
+    from{
+
+        opacity:0;
+
+        transform:translateY(-20px);
+
+    }
+
+    to{
+
+        opacity:1;
+
+        transform:translateY(0);
+
+    }
+
+}
+
+/* =====================================================
+   RESPONSIVE DESIGN
+===================================================== */
+
+@media (max-width:992px){
+
+    .navbar-brand{
+
+        font-size:1.1rem;
+
+    }
+
+    .card{
+
+        margin-bottom:20px;
+
+    }
+
+    .table{
+
+        font-size:.9rem;
+
+    }
+
+}
+
+@media (max-width:768px){
+
+    body{
+
+        font-size:15px;
+
+    }
+
+    h1{
+
+        font-size:2rem;
+
+    }
+
+    h2{
+
+        font-size:1.7rem;
+
+    }
+
+    h3{
+
+        font-size:1.3rem;
+
+    }
+
+    .card-body{
+
+        padding:20px;
+
+    }
+
+    .btn{
+
+        width:100%;
+
+        margin-bottom:10px;
+
+    }
+
+    .table{
+
+        font-size:13px;
+
+    }
+
+    .navbar{
+
+        padding:10px;
+
+    }
+
+}
+
+@media (max-width:576px){
+
+    .display-5{
+
+        font-size:2rem;
+
+    }
+
+    .card{
+
+        border-radius:10px;
+
+    }
+
+    .form-control,
+
+    .form-select{
+
+        font-size:14px;
+
+    }
+
+}
+
+/* ======================================
+   SCROLLBAR
+====================================== */
+
+::-webkit-scrollbar{
+
+    width:10px;
+
+}
+
+::-webkit-scrollbar-track{
+
+    background:#ececec;
+
+}
+
+::-webkit-scrollbar-thumb{
+
+    background:#198754;
+
+    border-radius:20px;
+
+}
+
+::-webkit-scrollbar-thumb:hover{
+
+    background:#146c43;
+
+}
+
+/* ======================================
+   PAGE ANIMATION
+====================================== */
+
+body{
+
+    animation:fadeIn .6s ease;
+
+}
+
+@keyframes fadeIn{
+
+    from{
+
+        opacity:0;
+
+    }
+
+    to{
+
+        opacity:1;
+
+    }
+
+}
+
+/* ======================================
+   BUTTON ANIMATION
+====================================== */
+
+.btn{
+
+    transition:.3s;
+
+}
+
+.btn:active{
+
+    transform:scale(.95);
+
+}
+
+/* ======================================
+   CARD ANIMATION
+====================================== */
+
+.card{
+
+    animation:cardFade .4s ease;
+
+}
+
+@keyframes cardFade{
+
+    from{
+
+        opacity:0;
+
+        transform:translateY(25px);
+
+    }
+
+    to{
+
+        opacity:1;
+
+        transform:translateY(0);
+
+    }
+
+}
+
+/* ======================================
+   LINKS
+====================================== */
+
+a{
+
+    transition:.25s;
+
+}
+
+a:hover{
+
+    text-decoration:none;
+
+}
+
+/* ======================================
+   TABLE ROW ANIMATION
+====================================== */
+
+.table tbody tr{
+
+    transition:.25s;
+
+}
+
+.table tbody tr:hover{
+
+    transform:scale(1.01);
+
+}
+
+/* ======================================
+   CUSTOM SHADOW
+====================================== */
+
+.shadow-soft{
+
+    box-shadow:
+
+    0 10px 25px rgba(0,0,0,.08);
+
+}
+
+/* ======================================
+   BORDER RADIUS
+====================================== */
+
+.rounded-xl{
+
+    border-radius:20px;
+
+}
+
+/* ======================================
+   SPACING
+====================================== */
+
+.mt-6{
+
+    margin-top:60px;
+
+}
+
+.mb-6{
+
+    margin-bottom:60px;
+
+}
+
+.py-6{
+
+    padding-top:60px;
+
+    padding-bottom:60px;
+
+}
+
+/* ======================================
+   ICONS
+====================================== */
+
+.bi{
+
+    vertical-align:middle;
+
+}
+
+/* ======================================
+   FOOTER
+====================================== */
+
+footer{
+
+    background:#212529;
+
+    color:#fff;
+
+}
+
+footer p{
+
+    margin-bottom:6px;
+
+}
+
+/* ======================================
+   LOADING SPINNER
+====================================== */
+
+.loader{
+
+    width:50px;
+
+    height:50px;
+
+    border:6px solid #ddd;
+
+    border-top:6px solid #198754;
+
+    border-radius:50%;
+
+    animation:spin 1s linear infinite;
+
+    margin:auto;
+
+}
+
+@keyframes spin{
+
+    from{
+
+        transform:rotate(0);
+
+    }
+
+    to{
+
+        transform:rotate(360deg);
+
+    }
+
+}
+
+/* ======================================
+   UTILITIES
+====================================== */
+
+.text-small{
+
+    font-size:.85rem;
+
+}
+
+.text-large{
+
+    font-size:1.3rem;
+
+}
+
+.fw-600{
+
+    font-weight:600;
+
+}
+
+.fw-700{
+
+    font-weight:700;
+
+}
+
+.cursor-pointer{
+
+    cursor:pointer;
+
+}
+
+/* ======================================
+   PRINT
+====================================== */
+
+@media print{
+
+    .navbar,
+
+    footer,
+
+    .btn,
+
+    .dropdown,
+
+    .alert{
+
+        display:none !important;
+
+    }
+
+    body{
+
+        background:#fff;
+
+    }
+
+    .card{
+
+        box-shadow:none;
+
+        border:1px solid #ddd;
+
+    }
+
+}

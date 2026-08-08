@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Add Beneficiary</title>
+</head>
+<body>
+
+<h2>Add Beneficiary</h2>
+
+<form method="POST">
+    <input type="text" name="name" placeholder="Name" required><br><br>
+    <input type="number" name="age" placeholder="Age" required><br><br>
+
+    <select name="category" required>
+        <option value="Child">Child</option>
+        <option value="Pregnant Woman">Pregnant Woman</option>
+        <option value="Lactating Mother">Lactating Mother</option>
+    </select><br><br>
+
+    <input type="text" name="health_status" placeholder="Health Status" required><br><br>
+
+    <button type="submit">Add</button>
+</form>
+
+{% if message %}
+    <p>{{ message }}</p>
+{% endif %}
+
+<br>
+<a href="/all">View All</a>
+
+</body>
+</html>
