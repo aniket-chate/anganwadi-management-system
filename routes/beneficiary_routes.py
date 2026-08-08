@@ -45,28 +45,93 @@ def beneficiaries():
 )
 def add():
 
-    name = request.form.get("name")
-    age = request.form.get("age")
-    category = request.form.get("category")
-    health_status = request.form.get("health_status")
+    try:
+        name = request.form.get("name", "").strip()
+        age = request.form.get("age", "").strip()
+        category = request.form.get("category", "").strip()
+        health_status = request.form.get("health_status", "").strip()
 
-    if not all([name, age, category, health_status]):
-        flash("Please fill all fields.", "danger")
-        return redirect(url_for("home.home"))
+        # Validate form data
+        if not all([
+            name,
+            age,
+            category,
+            health_status
+        ]):
+            flash(
+                "Please fill all fields.",
+                "danger"
+            )
 
-    success = add_beneficiary(
-        name,
-        age,
-        category,
-        health_status
-    )
+            return redirect(
+                url_for("home.home"),
+                code=303
+            )
 
-    if success:
-        flash("Beneficiary Added Successfully.", "success")
-    else:
-        flash("Failed to Add Beneficiary.", "danger")
+        # Validate age
+        try:
+            age = int(age)
 
-    return redirect(url_for("beneficiary.beneficiaries"))
+            if age < 0:
+                raise ValueError
+
+        except (ValueError, TypeError):
+
+            flash(
+                "Please enter a valid age.",
+                "danger"
+            )
+
+            return redirect(
+                url_for("home.home"),
+                code=303
+            )
+
+        # Insert into database
+        success = add_beneficiary(
+            name,
+            age,
+            category,
+            health_status
+        )
+
+        if success:
+
+            flash(
+                "Beneficiary Added Successfully.",
+                "success"
+            )
+
+        else:
+
+            flash(
+                "Failed to Add Beneficiary.",
+                "danger"
+            )
+
+        # Use 303 after POST.
+        # This explicitly tells the browser to perform
+        # a GET request after the successful POST.
+        return redirect(
+            url_for("beneficiary.beneficiaries"),
+            code=303
+        )
+
+    except Exception as e:
+
+        print(
+            f"[Add Route Error] {e}"
+        )
+
+        flash(
+            "An unexpected error occurred while adding the beneficiary.",
+            "danger"
+        )
+
+        return redirect(
+            url_for("home.home"),
+            code=303
+        )
 
 
 # ======================================
