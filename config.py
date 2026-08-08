@@ -7,17 +7,21 @@ load_dotenv()
 
 
 class Config:
-    """
-    Application configuration.
-    """
 
+    # ==========================================
     # Flask
+    # ==========================================
+
     SECRET_KEY = os.getenv(
         "SECRET_KEY",
         "anganwadi-secret-key"
     )
 
+
+    # ==========================================
     # Database
+    # ==========================================
+
     DB_HOST = os.getenv(
         "DB_HOST",
         "localhost"
@@ -43,19 +47,29 @@ class Config:
         "AnganwadiDB"
     )
 
-    # Uploads / reports are NOT used for
-    # persistent production storage.
-    UPLOAD_FOLDER = os.path.join(
-        os.getcwd(),
-        "uploads"
-    )
+
+    # ==========================================
+    # Application
+    # ==========================================
 
     REPORT_FOLDER = os.path.join(
         os.getcwd(),
         "reports"
     )
 
-    MAX_CONTENT_LENGTH = 16 * 1024 * 1024
+    UPLOAD_FOLDER = os.path.join(
+        os.getcwd(),
+        "uploads"
+    )
+
+    MAX_CONTENT_LENGTH = (
+        16 * 1024 * 1024
+    )
+
+
+    # ==========================================
+    # Debug
+    # ==========================================
 
     DEBUG = (
         os.getenv(
