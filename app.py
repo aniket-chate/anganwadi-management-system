@@ -30,12 +30,16 @@ def create_app():
 
     @app.errorhandler(500)
     def internal_error(error):
+        import traceback
 
-        return render_template(
-            "500.html"
-        ), 500
+        print("=" * 70)
+        print("INTERNAL SERVER ERROR")
+        print("=" * 70)
+        traceback.print_exc()
+        print("ERROR:", error)
+        print("=" * 70)
 
-    return app
+        return render_template("500.html"), 500
 
 
 app = create_app()
