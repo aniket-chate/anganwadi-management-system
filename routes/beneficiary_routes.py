@@ -6,6 +6,9 @@ from flask import (
     url_for,
     flash
 )
+# ======================================
+# Services
+# ======================================
 
 from services.beneficiary_service import (
     get_all_beneficiaries,
@@ -16,6 +19,11 @@ from services.beneficiary_service import (
     search_beneficiaries
 )
 
+
+# ======================================
+# Beneficiary Blueprint
+# ======================================
+
 beneficiary_bp = Blueprint(
     "beneficiary",
     __name__
@@ -25,6 +33,7 @@ beneficiary_bp = Blueprint(
 # ======================================
 # View All Beneficiaries
 # ======================================
+
 @beneficiary_bp.route("/beneficiaries")
 def beneficiaries():
 
@@ -39,6 +48,7 @@ def beneficiaries():
 # ======================================
 # Add Beneficiary
 # ======================================
+
 @beneficiary_bp.route(
     "/beneficiary/add",
     methods=["POST"]
@@ -46,18 +56,39 @@ def beneficiaries():
 def add():
 
     try:
-        name = request.form.get("name", "").strip()
-        age = request.form.get("age", "").strip()
-        category = request.form.get("category", "").strip()
-        health_status = request.form.get("health_status", "").strip()
 
-        # Validate form data
+        name = request.form.get(
+            "name",
+            ""
+        ).strip()
+
+        age = request.form.get(
+            "age",
+            ""
+        ).strip()
+
+        category = request.form.get(
+            "category",
+            ""
+        ).strip()
+
+        health_status = request.form.get(
+            "health_status",
+            ""
+        ).strip()
+
+
+        # ======================================
+        # Validate Form Data
+        # ======================================
+
         if not all([
             name,
             age,
             category,
             health_status
         ]):
+
             flash(
                 "Please fill all fields.",
                 "danger"
@@ -68,8 +99,13 @@ def add():
                 code=303
             )
 
-        # Validate age
+
+        # ======================================
+        # Validate Age
+        # ======================================
+
         try:
+
             age = int(age)
 
             if age < 0:
@@ -87,13 +123,18 @@ def add():
                 code=303
             )
 
-        # Insert into database
+
+        # ======================================
+        # Insert Into Database
+        # ======================================
+
         success = add_beneficiary(
             name,
             age,
             category,
             health_status
         )
+
 
         if success:
 
@@ -109,13 +150,16 @@ def add():
                 "danger"
             )
 
-        # Use 303 after POST.
-        # This explicitly tells the browser to perform
-        # a GET request after the successful POST.
+
+        # ======================================
+        # Redirect After POST
+        # ======================================
+
         return redirect(
             url_for("beneficiary.beneficiaries"),
             code=303
         )
+
 
     except Exception as e:
 
@@ -137,6 +181,7 @@ def add():
 # ======================================
 # Update Form
 # ======================================
+
 @beneficiary_bp.route(
     "/beneficiary/edit/<int:id>"
 )
@@ -144,13 +189,18 @@ def edit(id):
 
     beneficiary = get_beneficiary_by_id(id)
 
+
     if not beneficiary:
 
-        flash("Beneficiary Not Found.", "warning")
+        flash(
+            "Beneficiary Not Found.",
+            "warning"
+        )
 
         return redirect(
             url_for("beneficiary.beneficiaries")
         )
+
 
     return render_template(
         "update.html",
@@ -161,6 +211,7 @@ def edit(id):
 # ======================================
 # Update Beneficiary
 # ======================================
+
 @beneficiary_bp.route(
     "/beneficiary/update/<int:id>",
     methods=["POST"]
@@ -171,10 +222,12 @@ def update(id):
         "health_status"
     )
 
+
     success = update_beneficiary(
         id,
         health_status
     )
+
 
     if success:
 
@@ -190,6 +243,7 @@ def update(id):
             "danger"
         )
 
+
     return redirect(
         url_for("beneficiary.beneficiaries")
     )
@@ -198,12 +252,14 @@ def update(id):
 # ======================================
 # Delete Beneficiary
 # ======================================
+
 @beneficiary_bp.route(
     "/beneficiary/delete/<int:id>"
 )
 def delete(id):
 
     success = delete_beneficiary(id)
+
 
     if success:
 
@@ -219,6 +275,7 @@ def delete(id):
             "danger"
         )
 
+
     return redirect(
         url_for("beneficiary.beneficiaries")
     )
@@ -227,12 +284,18 @@ def delete(id):
 # ======================================
 # Search
 # ======================================
-@beneficiary_bp.route("/search")
+
+@beneficiary_bp.route(
+    "/search"
+)
 def search():
 
     beneficiaries = search_beneficiaries(
 
-        name=request.args.get("name", ""),
+        name=request.args.get(
+            "name",
+            ""
+        ),
 
         category=request.args.get(
             "category",
@@ -248,8 +311,8 @@ def search():
             "sort",
             "name"
         )
-
     )
+
 
     return render_template(
 
